@@ -27,7 +27,7 @@ class DocumentBuilder:
         # structure data for better retrieve
         structured = {
             "entity_type" : "team",
-            "team_id" : "team_id",
+            "team_id" : team_id,
             "name" : f"{team['city']} {team['name']}",
             "abbreviation" : team['abbreviation'],
             "conference" : team['conference'],

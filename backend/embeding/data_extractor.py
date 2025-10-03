@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
 from sqlalchemy import text
-from db_manager import DatabaseManager
+from backend.embeding.db_manager import DatabaseManager
 
 class DataExtractor:
     def __init__(self, db_manager: DatabaseManager):
@@ -45,7 +45,7 @@ class DataExtractor:
                 home_team_abbr,
             at.name as away_team_name, at.abbreviation as 
                 away_team_abbr
-            FROM games g
+            FROM game_details g
             JOIN teams ht ON g.home_team_id = ht.team_id
             JOIN teams at ON g.away_team_id = at.team_id
             ORDER BY g.game_timestamp DESC
@@ -58,7 +58,7 @@ class DataExtractor:
     def extract_boxscores(self) -> List[Dict[str, Any]]:
         query = """
         SELECT 
-            b.game_id, b.person_id, as player_id, b.team_id,
+            b.game_id, b.person_id as player_id, b.team_id,
             b.starter, b.seconds, b.points,
             b.fg2_made, b.fg2_attempted,
             b.fg3_made, b.fg3_attempted,
@@ -71,8 +71,8 @@ class DataExtractor:
             g.season, g.game_timestamp::date as game_date
         FROM player_box_scores b
         JOIN players p ON b.person_id = p.player_id
-        JOIN team t ON b.team_id = t.team_id
-        JOIN games g ON b.game_id = g.game_id
+        JOIN teams t ON b.team_id = t.team_id
+        JOIN game_details g ON b.game_id = g.game_id
         ORDER BY g.game_timestamp DESC, b.points DESC
         """
 

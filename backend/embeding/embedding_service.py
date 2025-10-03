@@ -6,7 +6,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import logging
 
-from config import Config
+from backend.embeding.config import Config
 
 class EmbeddingService:
     def __init__(self, config: Config):
@@ -66,7 +66,7 @@ class EmbeddingService:
                     else:
                         # retry again
                         self.logger.warning(f"Retrying embedding {idx}")
-                        embedding[idx] = self._embed_single(texts[idx])
+                        embeddings[idx] = self._embed_single(texts[idx])
                 except Exception as e:
                     self.logger.error(f"Failed to embed text {idx}: {e}")
                     raise

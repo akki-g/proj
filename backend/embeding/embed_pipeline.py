@@ -2,12 +2,12 @@ import logging
 from typing import List, Dict, Any
 from tqdm import tqdm
 
-from config import Config
-from db_manager import DatabaseManager
-from data_extractor import DataExtractor
-from document_builder import DocumentBuilder
-from embedding_service import EmbeddingService
-from vector_store import VectorStore
+from backend.embeding.config import Config
+from backend.embeding.db_manager import DatabaseManager
+from backend.embeding.data_extractor import DataExtractor
+from backend.embeding.document_builder import DocumentBuilder
+from backend.embeding.embedding_service import EmbeddingService
+from backend.embeding.vector_store import VectorStore
 
 class EmbeddingPipeline:
     # main pipeline orchestrator 

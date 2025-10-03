@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 import logging 
 from sqlalchemy import text
-from db_manager import DatabaseManager
+from backend.embeding.db_manager import DatabaseManager
 import json
 
 class VectorStore:

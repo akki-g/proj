@@ -2,7 +2,8 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 from contextlib import contextmanager
 import logging
-from config import Config
+from backend.embeding.config import Config
+
 class DatabaseManager:
     def __init__(self, config: Config):
         self.config = config
